@@ -10,13 +10,20 @@
             <div class="mb-3 row">
                 <label for="" class="col-sm-3 col-form-label">Productos</label>
                 <div class="col-sm-9">
-                    <input type="text"
+                    <input  type="text"
                             class="form-control"
                             ngModel
                             name="producto"
                             required
+                            minlength="3"
                             placeholder="Nombre del producto">
-                    <span class="form-text text-danger"><strong>Debe tener 3 letras como minimo</strong></span>
+                            <!-- Este span se mostrara si en el formulario no se cumple la condicion de tener minimo 3 letras 
+                                 y si el input de producto ha sido activado mediante el click-->
+                        <span *ngIf="miFormulario.controls['producto']?.invalid && 
+                                     miFormulario.controls['producto']?.touched"
+                               class="form-text text-danger">   
+                               <strong>Debe tener 3 letras como minimo</strong>
+                        </span>
                 </div>
             </div>
 
@@ -45,16 +52,29 @@
                             placeholder="Nombre del producto">
                 </div>
             </div>
+
             <div class="row">
                 <div class="col">
                     <button type="submit" class="btn btn-primary float-end">Guardar</button>
                 </div>
             </div>
-
         </form>
-        <div>
-            <p> {{miFormulario.valid}} </p>
-            <p> {{miFormulario.value | json}} </p>
-        </div>
+
+        <div class="row">
+
+            <div class="col">
+                <span>Valid</span>
+                <pre> {{miFormulario.valid}} </pre>
+
+                <span>Pristine</span>
+                <pre> {{miFormulario.pristine}} </pre>
+
+                <span>Touches</span>
+                <pre> {{miFormulario.touched}} </pre>
+                
+                <span>Value</span>
+                <pre> {{miFormulario.value | json}} </pre>
+            </div>
+
     </div>
 </div>
