@@ -1,1 +1,64 @@
-<p>dinamicos works!</p>
+<h2>Template:
+    <span>dinamicos works!</span>
+</h2>
+
+<form (ngSubmit)="guardarNombre()"
+      #formDynamic="ngForm"
+      autocomplete="off">
+
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Nombre</label>
+
+        <div class="col-sm-9">
+            <input type="text" 
+                class="form-control" 
+                ngModel
+                name="nombre"
+                required
+                minlength="3"
+                placeholder="Nombre de la Persona">
+
+            <span *ngIf="formDynamic.controls['nombre']?.errors && formDynamic.controls['nombre'].touched"
+                class="form-text text-danger">   
+                <strong>Este campo es obligatorio y debe tener 3 letras como minimo</strong>
+            </span>
+
+        </div>
+    </div>
+
+    <!-- Agregar Juego -->
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Aregar</label>
+
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input type="text" 
+                    class="form-control" 
+                    placeholder="Agregar Juego Favorito">
+                <button class="btn btn-outline-primary" type="button">Agrear</button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Lista de Juegos -->
+    <div class="mb-3 row">
+        <label for="" class="col-sm-3 col-form-label">Lista de Juegos</label>
+
+        <div class="col-sm-9">
+            
+            <input type="text" 
+                class="form-control mb-1">
+        </div>
+    </div>
+    <div>
+        <button type="button" 
+                class="btn btn-primary float-end" 
+                (click)="guardarNombre()"
+                [disabled]="formDynamic.invalid">
+                Guardar
+        </button>
+    </div>
+
+</form>
