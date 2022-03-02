@@ -36,7 +36,11 @@
                             name="precio"
                             required
                             min="0"
-                            placeholder="Nombre del producto">
+                            placeholder="Precio del producto">
+                        <span *ngIf="precioValido()"
+                              class="form-text text-danger">   
+                        <strong>el precio de be de ser mayor a 0</strong>
+                     </span>
                 </div>
             </div>
 
@@ -44,17 +48,21 @@
             <div class="mb-3 row">
                 <label for="" class="col-sm-3 col-form-label">Existencias del producto</label>
                 <div class="col-sm-9">
+                    <!--customMin es selector y la referencia de la directiva personalizada customMin -->
                     <input type="Number"
                             class="form-control"
                             ngModel
                             name="existencias"
-                            placeholder="Nombre del producto">
+                            [minimo]="0"
+                            customMin
+                            required
+                            placeholder="Existencias del producto">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">Guardar</button>
+                    <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary float-end">Guardar</button>
                 </div>
             </div>
         </form>
@@ -72,7 +80,7 @@
                 <pre> {{miFormulario.touched}} </pre>
                 
                 <span>Value</span>
-                <pre> {{miFormulario.value | json}} </pre>
+                <pre> sodpjop: {{ miFormulario.value | json}} </pre>
             </div>
 
     </div>
