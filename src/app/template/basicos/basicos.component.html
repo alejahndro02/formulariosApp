@@ -32,7 +32,7 @@
                 <div class="col-sm-9">
                     <input type="Number"
                             class="form-control"
-                            ngModel
+                            [ngModel]="initForm.precio"
                             name="precio"
                             required
                             min="0"
@@ -51,7 +51,7 @@
                     <!--customMin es selector y la referencia de la directiva personalizada customMin -->
                     <input type="Number"
                             class="form-control"
-                            ngModel
+                            [ngModel]="initForm.existencias"
                             name="existencias"
                             [minimo]="0"
                             customMin
