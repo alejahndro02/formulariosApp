@@ -8,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DinamicosComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
+  guardarNombre(){
+    console.log('posteado');
+  }
 }
