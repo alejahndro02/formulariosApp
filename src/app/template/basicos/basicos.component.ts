@@ -14,6 +14,12 @@ export class BasicosComponent implements OnInit {
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
 
+  //Valores del formulario por default
+  initForm = {
+      precio:0,
+      existencias:0
+    }
+
   constructor() { }
 
   ngOnInit(): void {
@@ -29,6 +35,11 @@ export class BasicosComponent implements OnInit {
 
   }
   guardar(){
-    console.log('guardar', this.miFormulario);
+    console.log('guardado');
+    // atara vez del metodo reset se pueden agregar valores por defecto al reiniciar el fomrulario 
+    this.miFormulario.resetForm({
+      precio:0,
+      existencias:0
+    })
   }
 }
