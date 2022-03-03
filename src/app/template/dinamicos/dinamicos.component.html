@@ -12,13 +12,14 @@
         <div class="col-sm-9">
             <input type="text" 
                 class="form-control" 
-                ngModel
+                [ngModel]="persona.nombre"
                 name="nombre"
                 required
                 minlength="3"
                 placeholder="Nombre de la Persona">
 
-            <span *ngIf="formDynamic.controls['nombre']?.errors && formDynamic.controls['nombre'].touched"
+            <span *ngIf="formDynamic.controls['nombre']?.errors && 
+                formDynamic.controls['nombre'].touched"
                 class="form-text text-danger">   
                 <strong>Este campo es obligatorio y debe tener 3 letras como minimo</strong>
             </span>
@@ -44,21 +45,33 @@
 
     <!-- Lista de Juegos -->
     <div class="mb-3 row">
-        <label for="" class="col-sm-3 col-form-label">Lista de Juegos</label>
+        <label class="col-sm-3 col-form-label">
+                Lista de Juegos
+        </label>
 
         <div class="col-sm-9">
             
-            <input type="text" 
+            <input *ngFor="let fav of persona.favoritos; let i = index" 
+                [ngModel]="fav.nombreJuego"
+                name="favoritos_{{i}}"
                 class="form-control mb-1">
         </div>
+
     </div>
-    <div>
-        <button type="button" 
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <button type="button" 
                 class="btn btn-primary float-end" 
-                (click)="guardarNombre()"
-                [disabled]="formDynamic.invalid">
-                Guardar
-        </button>
+                [disabled]="formDynamic.invalid"
+                (click)="guardarNombre()">
+                    Guardar
+            </button>
+
+        </div>
+
     </div>
 
 </form>
