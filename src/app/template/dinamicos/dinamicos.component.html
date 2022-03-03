@@ -12,7 +12,7 @@
         <div class="col-sm-9">
             <input type="text" 
                 class="form-control" 
-                [ngModel]="persona.nombre"
+                [(ngModel)]="persona.nombre"
                 name="nombre"
                 required
                 minlength="3"
@@ -52,9 +52,10 @@
         <div class="col-sm-9">
             
             <input *ngFor="let fav of persona.favoritos; let i = index" 
-                [ngModel]="fav.nombreJuego"
+                [(ngModel)]="fav.nombreJuego"
                 name="favoritos_{{i}}"
-                class="form-control mb-1">
+                class="form-control mb-1"
+                required>
         </div>
 
     </div>
@@ -72,6 +73,12 @@
 
         </div>
 
+    </div>
+
+    <div class="row">
+        <pre>
+            {{persona | json}}
+        </pre>
     </div>
 
 </form>
