@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+// Se crea la interface para la data que se utilizara 
+interface Persona{
+  nombre: string,
+  favoritos: Favoritos[]
+}
+
+interface Favoritos{
+  id:number
+  nombreJuego:string
+}
+
 @Component({
   selector: 'app-dinamicos',
   templateUrl: './dinamicos.component.html',
@@ -7,7 +18,14 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DinamicosComponent implements OnInit {
+persona: Persona = {
+  nombre:'Quetzalli',
+  favoritos: [
+    {id:1, nombreJuego:'Masha'},
+    {id:2, nombreJuego:'Marinerito'}
 
+  ]
+}
 
   constructor() { }
 
