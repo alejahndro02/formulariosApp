@@ -18,6 +18,7 @@ interface Favoritos{
   ]
 })
 export class DinamicosComponent implements OnInit {
+  // Se creo un objeto con informacion 
 persona: Persona = {
   nombre:'Quetzalli',
   favoritos: [
