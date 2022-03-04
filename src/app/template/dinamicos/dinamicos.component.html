@@ -32,12 +32,18 @@
         <label for="" class="col-sm-3 col-form-label">Aregar</label>
 
         <div class="col-sm-9">
-            <div class="input-group">
-                <input type="text" 
-                    class="form-control" 
-                    placeholder="Agregar Juego Favorito">
-                <button class="btn btn-outline-primary" type="button">Agrear</button>
 
+            <div class="input-group">
+                <input class="form-control" 
+                    [(ngModel)]="addFav"
+                    (keyup.enter)="agregarFav()"
+                    name="aregar"
+                    placeholder="Agregar Juego Favorito">
+                <button class="btn btn-outline-primary" 
+                        type="button"
+                        (click)="agregarFav()">
+                    Agrear
+                </button>
             </div>
 
         </div>
@@ -50,12 +56,22 @@
         </label>
 
         <div class="col-sm-9">
-            
-            <input *ngFor="let fav of persona.favoritos; let i = index" 
-                [(ngModel)]="fav.nombreJuego"
-                name="favoritos_{{i}}"
-                class="form-control mb-1"
-                required>
+
+            <div *ngFor="let fav of persona.favoritos; let i = index"
+                 class="input-group mb-1">
+
+                <input [(ngModel)]="fav.nombreJuego"
+                    name="favoritos_{{i}}"
+                    class="form-control"
+                    required>
+                <button class="btn btn-outline-danger" 
+                        type="button" 
+                        (click)="eliminarRegistro(i)">
+                    Eliminar
+                </button>
+
+            </div>
+        
         </div>
 
     </div>
@@ -79,6 +95,7 @@
         <pre>
             {{persona | json}}
         </pre>
+        <pre> {{formDynamic.value | json}} </pre>
     </div>
 
 </form>
