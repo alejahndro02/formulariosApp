@@ -14,8 +14,11 @@
 
                 <input class="form-check-input" 
                     type="radio" 
-                    name="radioGenero" 
-                    id="radioMasculino">
+                    value="M"
+                    [(ngModel)]="persona.genero"
+                    name="radioGenero"
+                    id="radioMasculino"
+                    required>
 
                 <label class="form-check-label" for="flexRadioDefault1">
                   Masculino
@@ -27,8 +30,11 @@
 
                 <input class="form-check-input" 
                     type="radio" 
+                    value="F"
+                    [(ngModel)]="persona.genero"
                     name="radioGenero" 
-                    id="radioFemenino">
+                    id="radioFemenino"
+                    required>
                 
                 <label class="form-check-label" for="flexRadioDefault2">
                   Femenino
@@ -50,7 +56,9 @@
             <div class="form-check form-switch">
                 
                 <input class="form-check-input" 
-                    type="checkbox" 
+                    type="checkbox"
+                    [(ngModel)]="persona.notificiones"
+                    name="notificaciones" 
                     role="switch" 
                     id="flexSwitchCheckChecked">
 
@@ -72,8 +80,11 @@
             
                 <input class="form-check-input" 
                     type="checkbox" 
+                    name="terminosCondiciones"
+                    [(ngModel)]="terminosYCondiciones"
                     value="" 
-                    id="flexCheckDefault">
+                    id="flexCheckDefault"
+                    required>
             
                 <label class="form-check-label" for="flexCheckDefault">
                   {{'Términos y Condiciones'}}
@@ -87,9 +98,18 @@
     <!-- Boton Submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+                [disabled]="switchesForm.invalid">
                 Guardar
             </button>
         </div>
     </div>
 </form>
+
+<h3>Valor del Formulario</h3>
+<pre> {{switchesForm.value | json}} </pre>
+<hr>
+<h3>Valido</h3>
+<pre> {{switchesForm.valid}} </pre>
+<h3>Condiciones:</h3>
+
