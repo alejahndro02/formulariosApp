@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, 
+         OnInit      } from '@angular/core';
+import { FormControl, 
+         FormGroup   } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -8,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicosComponent implements OnInit {
 
+  miFomularioReactivo : FormGroup = new FormGroup({
+    nombreProductoReactive:new FormControl('Rxt')
+  })
   constructor() { }
 
   ngOnInit(): void {
