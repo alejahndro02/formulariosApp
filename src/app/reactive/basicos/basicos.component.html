@@ -9,30 +9,44 @@
             <div class="mb-3 row">
                 <label for="" class="col-sm-3 col-form-label">Productos</label>
                 <div class="col-sm-9">
+
                     <input  type="text"
                             class="form-control"
                             formControlName="nombreProductoReactive"
                             placeholder="Nombre del producto">
+
                             <!-- Este span se mostrara si en el formulario no se cumple la condicion de tener minimo 3 letras 
                                  y si el input de producto ha sido activado mediante el click-->
-                        <span class="form-text text-danger">   
-                               <strong>Debe tener 3 letras como minimo</strong>
+                        <span class="form-text text-danger"
+                            *ngIf="campoNoValido('nombreProductoReactive')">   
+                            
+                                <strong>Debe tener 3 letras como minimo</strong>
                         </span>
                 </div>
+
             </div>
 
             <!-- Seccion de Precio del producto -->
             <div class="mb-3 row">
+
                 <label for="" class="col-sm-3 col-form-label">Precio del producto</label>
+                
                 <div class="col-sm-9">
+                
                     <input type="Number"
                             class="form-control"
                             formControlName="precioReactivo"
                             placeholder="Precio del producto">
-                        <span class="form-text text-danger">   
-                        <strong>el precio de be de ser mayor a 0</strong>
-                     </span>
+
+                        <span class="form-text text-danger"
+                            *ngIf="campoNoValido('precioReactivo')">
+
+                            <strong>{{'el precio de be de ser mayor a 0' | uppercase}}</strong>
+
+                        </span>
+                
                 </div>
+
             </div>
 
             <!-- Seccion de existencias del producto-->
@@ -44,6 +58,13 @@
                             class="form-control"
                             formControlName="existenciasReactivas"
                             placeholder="Existencias del producto">
+                        
+                        <span class="form-text text-danger"
+                            *ngIf="campoNoValido('existenciasReactivas')">
+
+                            <strong>{{'las existencias deben de ser mayor a 0 ' | uppercase}}</strong>
+
+                        </span>
                 </div>
             </div>
 
@@ -51,8 +72,9 @@
                 <div class="col">
                     <button type="submit" 
                             class="btn btn-primary float-end"
-                            [disabled]="miFomularioReactivo.invalid">
-                            Guardar
+                            [disabled]="miFomularioReactivo.invalid"
+                            >
+                            {{'Guardar' | titlecase}}
                     </button>
                 </div>
             </div>
@@ -72,7 +94,11 @@
                 
                 <span>Value</span>
                 <pre> Formulario Reactivo {{ miFomularioReactivo.value | json}} </pre>
-            </div>
+                <br>
+                <!-- <pre> {{miFomularioReactivo | json}} </pre> -->
+
+             </div>
 
         </div>
+    </div>
 </div>
