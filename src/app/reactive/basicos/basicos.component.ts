@@ -1,6 +1,6 @@
 import { Component, 
          OnInit      } from '@angular/core';
-import { FormControl, 
+import { FormBuilder, FormControl, 
          FormGroup   } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,24 @@ import { FormControl,
 })
 export class BasicosComponent implements OnInit {
 
-  miFomularioReactivo : FormGroup = new FormGroup({
-    nombreProductoReactive:new FormControl('Rxt'),
-    precioReactivo: new FormControl(20),
-    existenciasReactivas: new FormControl(3)
+  /*Este ejemplo es con formControl y en el archivo html se hace uso de la propiedad formControlName 
+   y asignandole coo valor alhguna propiedad declarada dentro del objeto*/ 
+  
+   /*miFomularioReactivo  : FormGroup = new FormGroup({
+    nombreProductoReactive: new FormControl('Rxt'),
+    precioReactivo        : new FormControl(20),
+    existenciasReactivas  : new FormControl(3)
+  })*/
+  
+  // Este ejemplo es usando FormBuidelr
+
+  miFomularioReactivo: FormGroup= this.fb.group({
+    nombreProductoReactive: ['Rxt'],
+    precioReactivo        : [20],
+    existenciasReactivas  : [3]
   })
-  constructor() { }
+
+  constructor( private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
