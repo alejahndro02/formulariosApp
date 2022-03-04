@@ -25,20 +25,26 @@ export class BasicosComponent implements OnInit {
   // Este ejemplo es usando FormBuidelr
 
   miFomularioReactivo: FormGroup= this.fb.group({
-    
-    nombreProductoReactive: ['Rxt',[ Validators.required, 
+
+    nombreProductoReactive: [,[ Validators.required, 
                                      Validators.minLength(3)]],
 
-    precioReactivo        : [20, [Validators.required,
+    precioReactivo        : [, [Validators.required,
                                   Validators.min(0)]],
 
-    existenciasReactivas  : [3, [Validators.required,
+    existenciasReactivas  : [, [Validators.required,
                                  Validators.min(0)]]
   })
 
   constructor( private fb: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+  /*Se le pasa como argumento al metodo un elemento de tipo sring en este caso es un 
+   campo que en el htmml se le pasa el campo que se desea evaluar*/
+  campoNoValido(campo:string){
+    return this.miFomularioReactivo.controls[campo].errors && 
+           this.miFomularioReactivo.controls[campo].touched
   }
 
 }
