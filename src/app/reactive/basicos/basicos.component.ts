@@ -12,7 +12,9 @@ import { FormControl,
 export class BasicosComponent implements OnInit {
 
   miFomularioReactivo : FormGroup = new FormGroup({
-    nombreProductoReactive:new FormControl('Rxt')
+    nombreProductoReactive:new FormControl('Rxt'),
+    precioReactivo: new FormControl(20),
+    existenciasReactivas: new FormControl(3)
   })
   constructor() { }
 
