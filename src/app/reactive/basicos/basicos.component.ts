@@ -1,7 +1,9 @@
 import { Component, 
          OnInit      } from '@angular/core';
-import { FormBuilder, FormControl, 
-         FormGroup   } from '@angular/forms';
+import { FormBuilder, 
+         FormControl, 
+         FormGroup,   
+         Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -23,9 +25,15 @@ export class BasicosComponent implements OnInit {
   // Este ejemplo es usando FormBuidelr
 
   miFomularioReactivo: FormGroup= this.fb.group({
-    nombreProductoReactive: ['Rxt'],
-    precioReactivo        : [20],
-    existenciasReactivas  : [3]
+    
+    nombreProductoReactive: ['Rxt',[ Validators.required, 
+                                     Validators.minLength(3)]],
+
+    precioReactivo        : [20, [Validators.required,
+                                  Validators.min(0)]],
+
+    existenciasReactivas  : [3, [Validators.required,
+                                 Validators.min(0)]]
   })
 
   constructor( private fb: FormBuilder) { }
