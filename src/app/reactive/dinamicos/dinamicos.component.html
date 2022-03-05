@@ -28,12 +28,16 @@
         <label for="" class="col-sm-3 col-form-label">Aregar</label>
 
         <div class="col-sm-9">
-
+            <!-- Se hace la referencia del input con el ts mediante la pripiedad [formControl] -->
             <div class="input-group">
                 <input class="form-control" 
-                    placeholder="Agregar Juego Favorito">
+                    placeholder="Agregar Juego Favorito"
+                    [formControl]="agregarFavs"
+                    (keyup.enter)="agregarRegistro()">
+
                 <button class="btn btn-outline-primary" 
-                        type="button">
+                        type="button"
+                        (click)="agregarRegistro()">
                     Agrear
                 </button>
             </div>
@@ -55,7 +59,8 @@
                     [formControlName]="i">
 
                 <button class="btn btn-outline-danger" 
-                    type="button" >
+                    type="button" 
+                    (click)="eliminarRegistro(i)">
                     Eliminar
                 </button>
 
@@ -92,6 +97,7 @@
         <span>Value</span>
         <pre> Formulario Reactivo {{ formularioDinamicoReactivo.value | json}} </pre>
         <br>
-
+        <span>Nuevo favorito</span>
+        <pre> agergar {{ agregarFavs.valid}} </pre>
     </div>
 </div>
