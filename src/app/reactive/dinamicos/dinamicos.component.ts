@@ -1,6 +1,6 @@
 import { Component, 
          OnInit     } from '@angular/core';
-import { FormBuilder, 
+import { FormArray, FormBuilder, 
          FormGroup, 
          Validators } from '@angular/forms';
 
@@ -11,15 +11,23 @@ import { FormBuilder,
   ]
 })
 export class DinamicosComponent implements OnInit {
-  
+
   formularioDinamicoReactivo: FormGroup = this.fb.group({
     nombre:[, [Validators.required,
-                Validators.minLength(3)]]
+                Validators.minLength(3)]],
+    favoritos: this.fb.array( [
+      ['Masha', Validators.required],
+      ['metalGear', Validators.required]
+    ], Validators.required)
   })
-
+get favoritosArr(){
+  return this.formularioDinamicoReactivo.get('favoritos') as FormArray;
+}
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    console.log(this.favoritosArr);
+    
   }
   campoNoValido(campo:string){
     return this.formularioDinamicoReactivo.controls[campo].errors && 
