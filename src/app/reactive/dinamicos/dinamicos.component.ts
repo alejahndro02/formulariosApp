@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, 
+         OnInit     } from '@angular/core';
+import { FormBuilder, 
+         FormGroup, 
+         Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -7,10 +11,29 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class DinamicosComponent implements OnInit {
+  
+  formularioDinamicoReactivo: FormGroup = this.fb.group({
+    nombre:[, [Validators.required,
+                Validators.minLength(3)]]
+  })
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
-
+  campoNoValido(campo:string){
+    return this.formularioDinamicoReactivo.controls[campo].errors && 
+           this.formularioDinamicoReactivo.controls[campo].touched
+  }
+  guardar(){
+    if(this.formularioDinamicoReactivo.invalid){
+      /* con el metodo markAllTouched se evalua si los campos no han sido tocados mandara el 
+      mensaje de error en cada uno de los elementos del formulario*/
+      this.formularioDinamicoReactivo.markAllAsTouched();
+      return
+    }
+    console.log('algo', this.formularioDinamicoReactivo.value);
+    // Se restablecen los valores del formulario
+    this.formularioDinamicoReactivo.reset()
+  }
 }
