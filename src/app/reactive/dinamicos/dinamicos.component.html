@@ -47,16 +47,19 @@
                 Lista de Juegos
         </label>
 
-        <div class="col-sm-9">
-
-            <!-- <div class="input-group mb-1">
+        <div class="col-sm-9" formArrayName="favoritos">
+<!-- *ngFor="let favorito of formularioDinamicoReactivo.controls['favoritos'].value" -->
+            <div class="input-group mb-1" 
+                *ngFor="let favorito of favoritosArr.controls; let i = index">
+                <input class="form-control" 
+                    [formControlName]="i">
 
                 <button class="btn btn-outline-danger" 
-                        type="button" >
+                    type="button" >
                     Eliminar
                 </button>
 
-            </div> -->
+            </div>
         
         </div>
 
