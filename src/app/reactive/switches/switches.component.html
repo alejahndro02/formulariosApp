@@ -1,6 +1,7 @@
 <h2>Formularios Reactivos Switches</h2>
 <hr>
-<form>
+<form [formGroup]="formularioSwitchDinamico"
+      (ngSubmit)="guardar()">
     <!-- Radios -->
     <div class="row mb-3">
 
@@ -15,7 +16,7 @@
                 <input class="form-check-input" 
                     type="radio" 
                     value="M"
-                    name="radioGenero"
+                    formControlName="genero"
                     id="radioMasculino">
 
                 <label class="form-check-label" for="flexRadioDefault1">
@@ -29,7 +30,7 @@
                 <input class="form-check-input" 
                     type="radio" 
                     value="F"
-                    name="radioGenero" 
+                    formControlName="genero"
                     id="radioFemenino">
                 
                 <label class="form-check-label" for="flexRadioDefault2">
@@ -54,6 +55,7 @@
                 <input class="form-check-input" 
                     type="checkbox"
                     role="switch" 
+                    formControlName="notificaciones"
                     id="flexSwitchCheckChecked">
 
                 <label class="form-check-label" 
@@ -75,6 +77,7 @@
                 <input class="form-check-input" 
                     type="checkbox" 
                     value="" 
+                    formControlName="terminos"
                     id="flexCheckDefault">
             
                 <label class="form-check-label" for="flexCheckDefault">
@@ -89,9 +92,27 @@
     <!-- Boton Submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+                    type="submit">
                 Guardar
             </button>
         </div>
     </div>
 </form>
+<div class="row">
+    
+    <div class="col">
+        <h5>Valor del Formulario</h5>
+        <pre> {{formularioSwitchDinamico.value | json}} </pre>
+        <br>
+        <h5>Personas</h5>
+        <pre> {{persona | json}} </pre>
+        <pre></pre>
+        <h5>Valido</h5>
+        <pre> {{formularioSwitchDinamico.valid}} </pre>
+        <br>
+        <h5>Términos</h5>
+        <br>
+        <h5>Condiciones:</h5>
+    </div>
+</div>
