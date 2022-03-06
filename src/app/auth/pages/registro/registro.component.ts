@@ -13,19 +13,29 @@ import { FormBuilder,
 export class RegistroComponent implements OnInit {
   // exprecion temporal se evalua que el nombre tenga letras de la a la z al igual que el segundo campo que corresponde al apellido
   nombrePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
+  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   miFormulario:FormGroup= this.fb.group({
     nombre:['',[ Validators.required, 
                  Validators.pattern( this.nombrePattern )
-                ]
-            ]
-    // nombre:['',Validators.required ]
-
+              ]
+            ],
+    email:['',[ Validators.required,
+                Validators.pattern( this.emailPattern )
+              ]
+          ]
   })
 
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    // VAlores por defecto
+    this.miFormulario.reset({
+      nombre:'Quetzalli Hernandez',
+      email:'quetzitachi@gmail.com'
+    })
+    console.log(this.miFormulario.value);
+    
   }
   campoNoValido( campo:string ){
 
