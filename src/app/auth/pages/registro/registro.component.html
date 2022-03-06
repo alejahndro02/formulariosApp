@@ -1,22 +1,29 @@
 <h2>Validaciones Reactivas</h2>
 <hr>
 <div class="row">
+
     <div class="col">
-        <form action="" autocomplete="off">
+
+        <form autocomplete="off"
+              [formGroup]="miFormulario"
+              (ngSubmit)="submitForm()">
             <!-- Nombre -->
             <div class="row mb-3">
 
-                <label for="" class="col-sm-3 col-form-lable">
+                <label class="col-sm-3 col-form-lable">
                     Nombre
                 </label>
                 
                 <div class="col-9">
                 
                     <input type="text" 
-                        class="form-control" 
+                        class="form-control"
+                        formControlName="nombre"
                         placeholder="Nombre de Usuario">
                 
-                        <span class="form-tex text-danger">Debe de ser en formato Nombre y Apellido</span>
+                        <span class="form-tex text-danger"
+                              *ngIf="campoNoValido('nombre')">
+                                Debe de ser en formato Nombre y Apellido</span>
                 
                 </div>
             </div>
@@ -86,7 +93,8 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end">
+                    <button class="btn btn-primary float-end"
+                            type="submit">
                         Crear
                     </button>
                 </div>
@@ -95,3 +103,6 @@
         </form>
     </div>
 </div>
+<h3>FormValid: <pre>{{miFormulario.valid}} </pre></h3>
+<h2>noombre</h2>
+<pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
