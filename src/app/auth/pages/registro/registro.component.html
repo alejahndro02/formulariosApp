@@ -54,7 +54,7 @@
             <!-- Nombre de Usuario -->
             <div class="row mb-3">
 
-                <label for="" class="col-sm-3 col-form-lable">
+                <label class="col-sm-3 col-form-lable">
                     Nombre de Usuario
                 </label>
 
@@ -62,8 +62,13 @@
 
                     <input type="text" 
                         class="form-control" 
+                        formControlName="nombreUsuario"
                         placeholder="Nombre de Usuario">
-                    <span class="form-tex text-danger">Debe de ser de 6 carateres como minimo</span>
+
+                    <span class="form-tex text-danger"
+                          *ngIf="campoNoValido('nombreUsuario')">
+                        El Nombre de usuario no puede ser strider
+                    </span>
                 </div>
             </div>
 
@@ -116,4 +121,6 @@
 <pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
 <h5>email</h5>
 <pre>{{miFormulario.controls['email'].errors | json}}</pre>
+<h5>Nombre de Usuario</h5>
 
+<pre>{{miFormulario.controls['nombreUsuario'].errors | json}}</pre>
