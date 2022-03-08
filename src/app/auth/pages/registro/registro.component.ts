@@ -1,10 +1,15 @@
 import { Component, 
-         OnInit       } from '@angular/core';
+         OnInit             } from '@angular/core';
 
 import { FormBuilder, 
-         FormControl, 
          FormGroup, 
-         Validators   } from '@angular/forms';
+         Validators         } from '@angular/forms';
+        
+import { ValidatorService   } from '@shared/validators/validator.service';
+//Se usa en caso de solo usar el archivo de validaciones
+// import { emailPattern, 
+//          nombrePattern,  
+//          noPuedeSerStrider  } from '@shared/validators/validaciones';
 
 @Component({
   selector: 'app-registro',
@@ -14,26 +19,25 @@ import { FormBuilder,
 })
 
 export class RegistroComponent implements OnInit {
-  // exprecion temporal se evalua que el nombre tenga letras de la a la z al igual que el segundo campo que corresponde al apellido
-  nombrePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
+  // si solo se usa el validaciones se aueda asi Validators.pattern( nombrePattern ) los campos de las propiedades
+  // si se agrega el sevicio se añade el this.validatorService a la propieda del objeto
   miFormulario:FormGroup= this.fb.group({
     nombre:['',[ Validators.required, 
-                  Validators.pattern( this.nombrePattern )
+                  Validators.pattern( this.validatorService.nombrePattern )
               ]
             ],
     email:['',[ Validators.required,
-                  Validators.pattern( this.emailPattern )
+                  Validators.pattern( this.validatorService.emailPattern )
               ]
           ],
           // El straider es la palabra que no quiero que coicida el campo 
     nombreUsuario:['',[ Validators.required,
-                          this.noPuedeSerStrider]
+                          this.validatorService.noPuedeSerStrider]
                   ]
   })
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private validatorService:ValidatorService) { }
 
   ngOnInit(): void {
     // VAlores por defecto
@@ -56,16 +60,5 @@ export class RegistroComponent implements OnInit {
       return
     }
   }
-  //evalua si concide con una palabra
-  noPuedeSerStrider(control: FormControl){
-    console.log(control);
-    
-    const valor: string = control.value?.trim().toLowerCase();
-    if (valor === 'strider'){
-      return {
-        noStrider:true
-      }
-    }
-    return null;
-  }
+
 }
