@@ -83,8 +83,11 @@
 
                     <input type="password" 
                         class="form-control" 
+                        formControlName="contraseña"
                         placeholder="Contraseña">
-                    <span class="form-tex text-danger">Debe de ser de 6 carateres como minimo</span>
+                    <span class="form-tex text-danger"
+                          *ngIf="campoNoValido('contraseña')">
+                          La contraseña debe de ser de 6 carateres como minimo</span>
                 </div>
             </div>
                        
@@ -99,8 +102,12 @@
 
                     <input type="password" 
                         class="form-control" 
+                        formControlName="confirmar"
                         placeholder="Confirmar la Contraseña">
-                    <span class="form-tex text-danger">No coiciden las contraseñas</span>
+                    <span class="form-tex text-danger"
+                          *ngIf="campoNoValido('confirmar')">
+                        No coiciden las contraseñas
+                    </span>
                 </div>
             </div>
 
@@ -117,6 +124,17 @@
     </div>
 </div>
 <h4>FormValid: <pre>{{miFormulario.valid}} </pre></h4>
+
+<h4>FormErrors: <pre>{{miFormulario.errors |json}} </pre></h4>
+<pre>paass {{miFormulario.controls['contraseña'].value}} </pre>
+<pre>conf {{miFormulario.controls['confirmar'].value}} </pre>
+
+
+<pre>{{miFormulario.controls['contraseña'].errors | json}}</pre>
+<pre>{{miFormulario.controls['confirmar'].errors | json}}</pre>
+
+
+<!-- <h4>FormValid: <pre>{{miFormulario.valid}} </pre></h4> -->
 <h5>nombre</h5>
 <pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
 <h5>email</h5>

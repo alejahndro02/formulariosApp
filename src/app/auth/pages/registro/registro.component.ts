@@ -24,17 +24,25 @@ export class RegistroComponent implements OnInit {
   // si se agrega el sevicio se añade el this.validatorService a la propieda del objeto
   miFormulario:FormGroup= this.fb.group({
     nombre:['',[ Validators.required, 
-                  Validators.pattern( this.validatorService.nombrePattern )
+                 Validators.pattern( this.validatorService.nombrePattern )
               ]
             ],
     email:['',[ Validators.required,
-                  Validators.pattern( this.validatorService.emailPattern )
+                Validators.pattern( this.validatorService.emailPattern )
               ]
           ],
           // El straider es la palabra que no quiero que coicida el campo 
-    nombreUsuario:['',[ Validators.required,
-                          this.validatorService.noPuedeSerStrider]
-                  ]
+    nombreUsuario :['', [ Validators.required,
+                        this.validatorService.noPuedeSerStrider]
+                    ],
+    contraseña    :['', [ Validators.required,
+                          Validators.minLength(6)]
+                    ],
+    confirmar     :['', [ Validators.required]
+                    ],
+  },{
+    // Se definen las validaciones que aplicaran al formulario miFormulario
+    validators:[this.validatorService.camposIguales('contraseña', 'confirmar')]
   })
 
   constructor(private fb:FormBuilder, private validatorService:ValidatorService) { }
