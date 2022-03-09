@@ -114,6 +114,7 @@
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary float-end"
+                            [disabled]="miFormulario.pending"
                             type="submit">
                         Crear
                     </button>
@@ -124,17 +125,13 @@
     </div>
 </div>
 <h4>FormValid: <pre>{{miFormulario.valid}} </pre></h4>
-
+<h4>FormStatus: <pre>{{miFormulario.status}} </pre></h4>
+<h4>Formpending: <pre>{{miFormulario.pending}} </pre></h4>
 <h4>FormErrors: <pre>{{miFormulario.errors |json}} </pre></h4>
 <pre>paass {{miFormulario.controls['contraseña'].value}} </pre>
 <pre>conf {{miFormulario.controls['confirmar'].value}} </pre>
-
-
 <pre>{{miFormulario.controls['contraseña'].errors | json}}</pre>
 <pre>{{miFormulario.controls['confirmar'].errors | json}}</pre>
-
-
-<!-- <h4>FormValid: <pre>{{miFormulario.valid}} </pre></h4> -->
 <h5>nombre</h5>
 <pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
 <h5>email</h5>
