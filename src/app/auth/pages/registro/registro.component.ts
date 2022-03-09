@@ -50,8 +50,18 @@ export class RegistroComponent implements OnInit {
   },{
     // Se definen las validaciones que aplicaran al formulario miFormulario
     validators    :[ this.validatorService.camposIguales('contraseña', 'confirmar') ]
-  })
-
+  });
+  // se crea un getter donde se controla los mensajes que se desean mostrar en cada error correspondiente 
+  get emailErrorsMsg():string{
+    const errors = this.miFormulario.get('email')?.errors;
+    if(errors?.['required']){
+      return 'Este campo es obligatorio'
+    }else if(errors?.['emailMatch']){
+      return 'El correo ya existe '
+    }else{
+      return 'No tiene el formato de un correo valido'
+    }
+  }
   constructor( private fb:FormBuilder, 
                private validatorService:ValidatorService,
                private emailValidator: EmailValidatorService ) { }
@@ -74,18 +84,18 @@ export class RegistroComponent implements OnInit {
       && this.miFormulario.get(campo)?.touched
     
   }
-  emailMatch(){
-    return this.miFormulario.get("email")?.errors?.['emailMatch']
-      && this.miFormulario.get("email")?.touched
-  }
-  emailRequired(){
-    return this.miFormulario.get("email")?.errors?.['required']
-      && this.miFormulario.get("email")?.touched
-  }
-  emailPattern(){
-    return this.miFormulario.get("email")?.errors?.['pattern']
-      && this.miFormulario.get("email")?.touched
-  }
+  // emailMatch(){
+  //   return this.miFormulario.get("email")?.errors?.['emailMatch']
+  //     && this.miFormulario.get("email")?.touched
+  // }
+  // emailRequired(){
+  //   return this.miFormulario.get("email")?.errors?.['required']
+  //     && this.miFormulario.get("email")?.touched
+  // }
+  // emailPattern(){
+  //   return this.miFormulario.get("email")?.errors?.['pattern']
+  //     && this.miFormulario.get("email")?.touched
+  // }
   submitForm(){
     if( this. miFormulario.invalid){
       this.miFormulario.markAllAsTouched()
