@@ -49,7 +49,7 @@ export class RegistroComponent implements OnInit {
                     ],
   },{
     // Se definen las validaciones que aplicaran al formulario miFormulario
-    validators    :[this.validatorService.camposIguales('contraseña', 'confirmar')]
+    validators    :[ this.validatorService.camposIguales('contraseña', 'confirmar') ]
   })
 
   constructor( private fb:FormBuilder, 
@@ -71,7 +71,20 @@ export class RegistroComponent implements OnInit {
   campoNoValido( campo:string ){
 
     return this.miFormulario.get(campo)?.invalid
-        && this.miFormulario.get(campo)?.touched
+      && this.miFormulario.get(campo)?.touched
+    
+  }
+  emailMatch(){
+    return this.miFormulario.get("email")?.errors?.['emailMatch']
+      && this.miFormulario.get("email")?.touched
+  }
+  emailRequired(){
+    return this.miFormulario.get("email")?.errors?.['required']
+      && this.miFormulario.get("email")?.touched
+  }
+  emailPattern(){
+    return this.miFormulario.get("email")?.errors?.['pattern']
+      && this.miFormulario.get("email")?.touched
   }
   submitForm(){
     if( this. miFormulario.invalid){
