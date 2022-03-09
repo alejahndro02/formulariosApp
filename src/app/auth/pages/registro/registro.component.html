@@ -43,10 +43,20 @@
                         class="form-control"
                         formControlName="email" 
                         placeholder="Email del Usisario">
-                        
+                        <!-- Se mostrara si el campo es requerido -->
                     <span class="form-tex text-danger"
-                        *ngIf="campoNoValido('email')">
-                            Este campo es Obligatorio
+                        *ngIf="emailRequired()">
+                          Este campo es obligatorio
+                    </span>
+                    <!-- Se mostrara si el campo no coincide con un emial valido  -->
+                    <span class="form-tex text-danger"
+                        *ngIf="emailPattern()">
+                          Este campo no tiene el formato de un email      
+                    </span>
+                        <!-- Este email ya existe  -->
+                    <span class="form-tex text-danger"
+                        *ngIf="emailMatch()">
+                          Este correo ya existe
                     </span>
                 </div>
             </div>
